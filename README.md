@@ -1,6 +1,8 @@
 # Cloudflare Bulk Delete
 Cloudflare Bulk Delete is a Python script that connects to the Cloudflare API and deletes all DNS records for a specified zone. This script is useful if you need to delete a large number of DNS records from a Cloudflare zone, as it automates the process and saves you from having to manually delete each record one by one.
 
+## Motivation
+The Cloudflare platform automatically imports all DNS records associated with a newly added zone for a seamless transition. However, this often results in a clutter of unnecessary records that are no longer needed. In some cases, these records are from domain sellers or resellers and point to a multitude of random addresses, making it a hassle to remove them one by one. Unfortunately, Cloudflare does not support bulk delete natively, so I created the "cloudflare bulk delete" project to automate the process. By connecting to the Cloudflare API and running the script, all DNS records associated with a given zone are deleted in one fell swoop, saving time and effort for the user and making the process of managing DNS records in Cloudflare more efficient.
 
 ## Prerequisites
 Before you can run this script, you need to have the following:
