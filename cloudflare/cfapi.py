@@ -15,22 +15,19 @@ def list_records(zoneid: str, apikey: str) -> List[dict]:
     res = conn.getresponse()
 
     # Making sure that there are no erros
-    # Errors can happen when ZoneID does not match and DNSID does not match
+    # Errors can happen when ZoneID does not match
     if res.status != 200:
         # Unauthorized
         if res.status == 401:
             raise APIKEYERROR
 
-        # Cloudflare sends 404 when there is invalid zoneid or dnsrecord id
+        # Cloudflare sends 404 when there is invalid zoneid
         if res.status == 404:
             # Parsing error message
             err = json.loads(res.read().decode("utf-8"))
             if err["errors"][0]["code"] == 7003:
                 raise ZONEIDNOTFOUND
             
-            elif err["errors"][0]["code"] == 81044:
-                raise DNSRECORDNOTFOUND
-
             raise UnknownException
 
     else:
